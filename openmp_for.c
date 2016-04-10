@@ -15,11 +15,18 @@ void Test( int n )
 	printf( "%d, ", n );
 }
 
+void Test2( int n, int m )
+{
+  printf( "<T:%d> - %d, %d\n", omp_get_thread_num(), n, m );
+}
+
 int main(int argc, char* argv[])
 {
-	int i;
+	int i,j;
 	#pragma omp parallel for 
-	for( i = 0; i < 500; ++ i )
-		Test( i );
+	for( i = 0; i < 5; ++ i )
+		for ( j = 0; j < 3; ++j )
+			Test2( i,j );
 	//system( "pause" );
+	return 0;
 }
